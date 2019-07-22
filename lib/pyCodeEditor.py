@@ -6,7 +6,6 @@ from objc import super
 from keyword import kwlist
 import re
 import sys
-
 from pygments.lexers import PythonLexer, get_lexer_by_name
 from pygments.token import *
 from pygments.style import Style

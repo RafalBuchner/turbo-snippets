@@ -1,5 +1,5 @@
-# from drawBot.ui.codeEditor import *
-from pyCodeEditor import CodeEditor
+from drawBot.ui.codeEditor import *
+# from pyCodeEditor import CodeEditor
 from vanilla import *
 from collections import OrderedDict
 from vanilla.dialogs import getFile, putFile, getFolder
@@ -9,7 +9,7 @@ from misc import importSettings, exportSettings, findVariables, renameVariables,
 from parsers import *
 from pprint import pprint
 import os
-homedir = os.getenv("HOME")
+homedir = os.path.expanduser('~')
 editorNameParser = OrderedDict([
 
     ('PyCharm', PyCharmParser),
@@ -18,14 +18,15 @@ editorNameParser = OrderedDict([
     ('Alfred', AlfredParser), 
     ]
 )
-
+print('home', os.path.expanduser('~/Library/Preferences/PyCharmCE2019.1/templates'))
 defaultPaths = dict(
-    PyCharm=os.path.join(homedir, '/Library/Preferences/PyCharmCE2019.1/templates'),
-    SublimeText=os.path.join(homedir, '/Library/Application Support/Sublime Text 3/Packages/User'),
-    Atom=os.path.join(homedir, '/.atom/'),
+    PyCharm=os.path.expanduser('~/Library/Preferences/PyCharmCE2019.1/templates'),
+    SublimeText=os.path.expanduser('~/Library/Application Support/Sublime Text 3/Packages/User'),
+    Atom=os.path.expanduser('~/.atom/'),
     # BBEdit=os.path.join(homedir),
-    Alfred=os.path.join(homedir),
+    Alfred=homedir,
 )
+print('defaultPaths', defaultPaths)
 debug = True
 
 fileFormat = 'turboSnippets'
@@ -33,7 +34,7 @@ center = NotificationCenter()
 globalsettings = importSettings()
 
 if globalsettings is None:
-    globalsettings = {}
+    globalsettings = {'paths':defaultPaths}
 print(globalsettings)
 
 
@@ -196,7 +197,7 @@ class TurboSnippets(BaseWindowController):
             alfred_name = item.get('alfred_name')
             snippet['abbreviation'] = abbreviation
             snippet['description'] = description
-            snippet['alfred_name'] = description
+            snippet['alfred_name'] = alfred_name
             self.w.view.abbreviationTxt.set(abbreviation)
             self.w.view.descriptionTxt.set(description)
             self.w.view.alfred_nameTxt.set(alfred_name)
@@ -241,23 +242,22 @@ class TurboSnippets(BaseWindowController):
                 soft_tabs=True,
                 group_name=self.snippetGroupName
             )
-        print(3)
+        print(globalsettings)
         if list(generate.keys()):
-            print(2)
             for editorName in generate:
-                print(333)
                 if generate[editorName]:
-                    print(444)
                     paths = globalsettings.get('paths')
-                    print(444)
-                    print(555)
                     if paths is None:
-                        print(66)
                         paths = defaultPaths
-                    path = paths[editorName]
+                    path = paths.get(editorName)
                     if editorNameParser[editorName].implemented:
+                        if path is None:
+                            path = defaultPaths[editorName]
                         parser = editorNameParser[editorName](self.snippets, settings, path)
                         parser.save()
+                    
+
+                        print(f'> {editorName}\'s snippets were saved in :{path}')
 
     def settingsCallback(self, sender):
         SettingsSheet(self.w)
@@ -282,10 +282,10 @@ class TurboSnippets(BaseWindowController):
     def addRemoveCallback(self, sender):
         items = self.w.view.list.get()
         if sender.getTitle() == '+':
-            items += [dict(abbreviation=f"name/shortcut", description="description", alfred_name="name/shortcut in alfred")]
+            items += [dict(abbreviation="name/shortcut", description="description", alfred_name="name/shortcut in alfred")]
 
             self.snippets += [dict(
-                abbreviation=f"name/shortcut",
+                abbreviation="name/shortcut",
                 description="description",
                 alfred_name="name/shortcut in alfred",
                 text="# code here",
@@ -446,7 +446,7 @@ class VariableSheet:
 
 if __name__ == '__main__':
     from test.testTools import executeVanillaTest
-    from debug import DebugWindowController
+    # from debug import DebugWindowController
     # DebugWindowController().show()
-    executeVanillaTest(TurboSnippets)
-    # TurboSnippets()
+    # executeVanillaTest(TurboSnippets)
+    TurboSnippets()

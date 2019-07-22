@@ -1,0 +1,8 @@
+<snippet>
+  <tabTrigger>blablabla</tabTrigger>
+  <description>nothing so important</description>
+  <content><![CDATA[${1:currentFont} = CurrentFont()
+
+for glyph in ${1:currentFont}:
+    # ${2:END}]]></content>
+</snippet>

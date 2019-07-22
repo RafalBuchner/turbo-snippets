@@ -181,6 +181,10 @@ def importSettings():
 
 def exportSettings(data):
     path = 'settings.'+ settingFormat
+    if not os.path.exists(path):
+        f= open(path,"w+")
+        f.close()
+
     writePlist(data, path)
 
 def importFromTurboSnippets(path):

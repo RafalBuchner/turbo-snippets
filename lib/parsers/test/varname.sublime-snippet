@@ -1,0 +1,5 @@
+<snippet>
+  <tabTrigger>varname</tabTrigger>
+  <description>I'm doing something sossy</description>
+  <content><![CDATA[${1:nana} = ${2:ula}()]]></content>
+</snippet>

@@ -29,6 +29,7 @@ class SublimeParser(BaseParser):
         True: False,
     }
     def __init__(self, data, settings, path):
+        self.snippets = {}
         super(SublimeParser, self).__init__(data=data, settings=settings,path=path)
         self.softTabs = True
         self.spacesInTab = 4
@@ -38,8 +39,17 @@ class SublimeParser(BaseParser):
         return html.unescape(self._txt.decode('utf-8'))
 
     def save(self):
-        with open(self.path, 'w') as f:
-            f.write(self.getData())
+        basename = os.path.basename(self.path)
+        dirName = os.path.dirname(self.path)
+        boundleDir = os.path.join(dirName, self.groupName)
+        if not os.path.exists(boundleDir):
+            os.mkdir(boundleDir)
+        path = os.path.join(dirName, self.groupName)
+        for snippetName in self.snippets:
+            data = html.unescape(self.snippets[snippetName].decode('utf-8'))
+            snippetPath = os.path.join(path,snippetName + "." + self.formatName)
+            with open(snippetPath, 'w') as f:
+                f.write(data)
 
     def _constructXML(self):
 
@@ -48,7 +58,7 @@ class SublimeParser(BaseParser):
             text = snippet['text']
             sourceTxt = snippet.get('source', None)
             for i, var in enumerate(snippet['variables']):
-                order = var.get('order', str(i))
+                order = var.get('order', str(i+1))
                 if not order.isdigit(): order = str(i)
 
                 name = var['name']
@@ -67,8 +77,7 @@ class SublimeParser(BaseParser):
             tabTrigger.text = snippet.get('abbreviation')
             if sourceTxt is None:
                 # TEMP
-                sourceTxt = 'blablbalba smth work on that source thing'
-                scope.text = 'scope.python'
+                scope.text = 'source.python'
 
             if sourceTxt is not None:
                 snippetEntry.insert(-1, scope)
@@ -76,7 +85,7 @@ class SublimeParser(BaseParser):
             snippetEntry.insert(-1, tabTrigger)
             if snippet.get('description') is not None:
                 snippetEntry.insert(-1, description)
-
+            self.snippets[tabTrigger.text] = self.xml.tostring(snippetEntry, pretty_print=True)
             self._txt += self.xml.tostring(snippetEntry, pretty_print=True,xml_declaration=False,exclusive=True)
 
 

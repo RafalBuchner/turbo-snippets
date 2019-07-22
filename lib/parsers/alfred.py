@@ -37,7 +37,6 @@ class AlfredParser(BaseParser):
     def save(self):
         filename = self.path
         alfredEntries = self.getSnippets()
-        currentDir = os.getcwd()
         with tempfile.TemporaryDirectory() as tmpDir:
             os.chdir(tmpDir)
             fileList = []
