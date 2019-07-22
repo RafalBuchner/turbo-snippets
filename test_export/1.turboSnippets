@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>abbreviation</key>
+		<string>name1</string>
+		<key>description</key>
+		<string>…</string>
+		<key>text</key>
+		<string>no1 $a$ $b$
+    $c$</string>
+		<key>variables</key>
+		<array>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>a</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>b</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>c</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>abbreviation</key>
+		<string>name2</string>
+		<key>description</key>
+		<string>I'm doing something</string>
+		<key>text</key>
+		<string>bablabla $s$, nanana $na$</string>
+		<key>variables</key>
+		<array>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>s</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>na</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>nono</string>
+	<dict>
+		<key>abbreviation</key>
+		<string>name1</string>
+		<key>alfred_name</key>
+		<string>n1</string>
+		<key>description</key>
+		<string>I'm doing it</string>
+		<key>text</key>
+		<string>def test():
+    # $here$
+if __name__ == '__main__':
+    test()</string>
+		<key>variables</key>
+		<array>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>here</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>abbreviation</key>
+		<string>name2</string>
+		<key>alfred_name</key>
+		<string>n2</string>
+		<key>description</key>
+		<string>I'm doing that</string>
+		<key>text</key>
+		<string>test2</string>
+		<key>variables</key>
+		<array/>
+	</dict>
+</array>
+</plist>

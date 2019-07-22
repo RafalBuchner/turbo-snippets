@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>generate</key>
+	<dict>
+		<key>Alfred</key>
+		<true/>
+		<key>PyCharm</key>
+		<true/>
+		<key>SublimeText</key>
+		<true/>
+	</dict>
+	<key>paths</key>
+	<dict>
+		<key>Alfred</key>
+		<string>/Users/rafaelbuchner/repos/myTools/snippetCreator/lib/output</string>
+		<key>PyCharm</key>
+		<string>/Users/rafaelbuchner/repos/myTools/snippetCreator/lib/output</string>
+		<key>SublimeText</key>
+		<string>/Users/rafaelbuchner/repos/myTools/snippetCreator/lib/output</string>
+	</dict>
+</dict>
+</plist>

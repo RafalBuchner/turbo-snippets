@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>abbreviation</key>
+		<string>testmain</string>
+		<key>alfred_name</key>
+		<string>ctestmain</string>
+		<key>description</key>
+		<string>create __main__ document</string>
+		<key>text</key>
+		<string>def test()
+    # codehere
+
+if __main__ == '__name__':
+    test()</string>
+		<key>variables</key>
+		<array>
+			<dict>
+				<key>default_value</key>
+				<string></string>
+				<key>expression</key>
+				<string></string>
+				<key>name</key>
+				<string>codehere</string>
+				<key>skip_if_defined</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>abbreviation</key>
+		<string>defm</string>
+		<key>alfred_name</key>
+		<string>defm</string>
+		<key>description</key>
+		<string>create method</string>
+		<key>text</key>
+		<string>    def *method*(self, *args*):
+        """
+        *method* docstring
+        """</string>
+		<key>variables</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>abbreviation</key>
+		<string>~2</string>
+		<key>description</key>
+		<string>…</string>
+		<key>text</key>
+		<string></string>
+		<key>variables</key>
+		<array/>
+	</dict>
+</array>
+</plist>

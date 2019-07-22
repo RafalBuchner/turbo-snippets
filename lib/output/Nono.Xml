@@ -1,0 +1,13 @@
+<templateSet group="nono">
+  <template description="I'm doing that" name="name2" toReformat="false" toShortenFQNames="true" value="test2">
+    <context>
+      <option name="Python" value="true"/>
+    </context>
+  </template>
+  <template description="I'm doing it" name="name1" toReformat="false" toShortenFQNames="true" value="def test():&#10;    # $here$&#10;if __name__ == '__main__':&#10;    test()">
+    <context>
+      <option name="Python" value="true"/>
+    </context>
+    <variable alwaysStopAt="true" name="here"/>
+  </template>
+</templateSet>

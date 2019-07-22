@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[def test():
+    # ${0:here}
+if __name__ == '__main__':
+    test()]]></content>
+  <tabTrigger>name1</tabTrigger>
+  <description>I'm doing it</description>
+  <scope>scope.python</scope>
+</snippet>
+<snippet>
+  <content><![CDATA[test2]]></content>
+  <tabTrigger>name2</tabTrigger>
+  <description>I'm doing that</description>
+  <scope>scope.python</scope>
+</snippet>
