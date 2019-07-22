@@ -37,13 +37,15 @@ if globalsettings is None:
 print(globalsettings)
 
 
-class SnippetCreator(BaseWindowController):
+class TurboSnippets(BaseWindowController):
+
     txtH = 17
     btnH = 22
     p = 10
     width = 700
 
     def __init__(self):
+
 
         self.firstOpen = True
         self.varList = []
@@ -111,7 +113,7 @@ class SnippetCreator(BaseWindowController):
 
         self.height = y
         self.w = Window((self.width, self.height),
-                        'SnippetCreator')  # , minSize=(100, 100))
+                        'TurboSnippets')  # , minSize=(100, 100))
         self.w.view = view
         self.w.open()
         self.w.view.codeEditor.show(False)
@@ -191,10 +193,13 @@ class SnippetCreator(BaseWindowController):
             snippet = self.snippets[rowIndex]
             abbreviation = item.get('abbreviation')
             description = item.get('description')
+            alfred_name = item.get('alfred_name')
             snippet['abbreviation'] = abbreviation
             snippet['description'] = description
+            snippet['alfred_name'] = description
             self.w.view.abbreviationTxt.set(abbreviation)
             self.w.view.descriptionTxt.set(description)
+            self.w.view.alfred_nameTxt.set(alfred_name)
             self.w.view.codeEditor.set(snippet['text'])
 
     def editItemsCallback(self, sender):
@@ -277,12 +282,13 @@ class SnippetCreator(BaseWindowController):
     def addRemoveCallback(self, sender):
         items = self.w.view.list.get()
         if sender.getTitle() == '+':
-            items += [dict(abbreviation=f"~{len(items)}", description="…")]
+            items += [dict(abbreviation=f"name/shortcut", description="description", alfred_name="name/shortcut in alfred")]
 
             self.snippets += [dict(
-                abbreviation=f"~{len(items)}",
-                description="…",
-                text="",
+                abbreviation=f"name/shortcut",
+                description="description",
+                alfred_name="name/shortcut in alfred",
+                text="# code here",
                 variables=[]
             )]
             self.w.view.list.set(items)
@@ -332,9 +338,9 @@ class SettingsSheet:
     def __init__(self, parentWindow):
         self.paths = globalsettings.get('paths', {})
         self.pathsHeight = 0
-        x, self.y, p = [SnippetCreator.p] * 3
-        self.txtH = SnippetCreator.txtH
-        self.btnH = SnippetCreator.btnH
+        x, self.y, p = [TurboSnippets.p] * 3
+        self.txtH = TurboSnippets.txtH
+        self.btnH = TurboSnippets.btnH
         view = Group((0, 0, -0, -0))
         path = '/parsers/'
         index = 0
@@ -361,7 +367,7 @@ class SettingsSheet:
         else:
             checkboxValue = True
 
-        x, p = SnippetCreator.p, SnippetCreator.p
+        x, p = TurboSnippets.p, TurboSnippets.p
         path = self.paths.get(editorName, defaultPaths[editorName])
         # if index != 0:
         y = (index * self.btnH + p)
@@ -441,6 +447,6 @@ class VariableSheet:
 if __name__ == '__main__':
     from test.testTools import executeVanillaTest
     from debug import DebugWindowController
-    DebugWindowController().show()
-    executeVanillaTest(SnippetCreator)
-    # SnippetCreator()
+    # DebugWindowController().show()
+    executeVanillaTest(TurboSnippets)
+    # TurboSnippets()
