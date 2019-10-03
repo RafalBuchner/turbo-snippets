@@ -257,7 +257,7 @@ class TurboSnippets(BaseWindowController):
                         parser.save()
                     
 
-                        print(f'> {editorName}\'s snippets were saved in :{path}')
+                        print(f"> {editorName}\'s snippets were saved in :{path}")
 
     def settingsCallback(self, sender):
         SettingsSheet(self.w)
@@ -448,5 +448,5 @@ if __name__ == '__main__':
     from test.testTools import executeVanillaTest
     # from debug import DebugWindowController
     # DebugWindowController().show()
-    # executeVanillaTest(TurboSnippets)
+    executeVanillaTest(TurboSnippets)
     TurboSnippets()
